@@ -48,7 +48,7 @@ dependencies {
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.squareup.retrofit2:adapter-guava:2.9.0")
-    implementation("com.squareup.retrofit2:adapter-guava:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.picasso:picasso:2.8")
     implementation("io.insert-koin:koin-android:3.5.3")
     implementation("com.facebook.shimmer:shimmer:0.5.0")
