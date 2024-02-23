@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/user_list">
+
+    <fragment
+        android:id="@+id/user_list"
+        android:name="com.thiagofr.jsonplaceholder.presenter.userlist.UserListFragment"
+        android:label="UserList"
+        tools:layout="@layout/fragment_user_list">
+
+        <action
+            android:id="@+id/action_userlist_to_user" />
+
+    </fragment>
+
+</navigation>
