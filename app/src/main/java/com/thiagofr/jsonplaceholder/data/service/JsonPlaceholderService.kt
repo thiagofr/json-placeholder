@@ -6,5 +6,5 @@ import retrofit2.http.GET
 
 interface JsonPlaceholderService {
     @GET("users")
-    fun getUserList(): Response<List<User>>
+    suspend fun getUserList(): Response<List<User>>
 }

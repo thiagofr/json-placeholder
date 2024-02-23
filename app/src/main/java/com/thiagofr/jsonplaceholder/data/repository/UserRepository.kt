@@ -4,5 +4,5 @@ import com.thiagofr.jsonplaceholder.data.ResponseResult
 import com.thiagofr.jsonplaceholder.data.User
 
 interface UserRepository {
-    fun getUserList(): ResponseResult<List<User>>
+    suspend fun getUserList(): ResponseResult<List<User>>
 }

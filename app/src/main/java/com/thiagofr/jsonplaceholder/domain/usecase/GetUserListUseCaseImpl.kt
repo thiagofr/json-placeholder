@@ -8,7 +8,7 @@ import com.thiagofr.jsonplaceholder.domain.Result
 import com.thiagofr.jsonplaceholder.domain.mapper.UserToUserUIMapper
 
 class GetUserListUseCaseImpl(private val userRepository: UserRepository) : GetUserListUseCase {
-    override fun invoke(): Result<List<UserUI>> {
+    override suspend fun invoke(): Result<List<UserUI>> {
         return when (val result = userRepository.getUserList()) {
             is ResponseResult.SuccessResponse -> handleSuccess(result)
             is ResponseResult.ErrorResponse -> handleError(result)

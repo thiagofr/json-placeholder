@@ -4,5 +4,5 @@ import com.thiagofr.jsonplaceholder.model.UserUI
 import com.thiagofr.jsonplaceholder.domain.Result
 
 interface GetUserListUseCase {
-    operator fun invoke(): Result<List<UserUI>>
+    suspend operator fun invoke(): Result<List<UserUI>>
 }

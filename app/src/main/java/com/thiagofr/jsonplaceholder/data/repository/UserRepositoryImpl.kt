@@ -9,7 +9,7 @@ import retrofit2.Response
 class UserRepositoryImpl(
     private val service: JsonPlaceholderService
 ) : UserRepository {
-    override fun getUserList(): ResponseResult<List<User>> {
+    override suspend fun getUserList(): ResponseResult<List<User>> {
         val response = service.getUserList()
 
         return if (response.isSuccessful) {
