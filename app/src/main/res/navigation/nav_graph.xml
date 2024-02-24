@@ -12,7 +12,16 @@
         tools:layout="@layout/fragment_user_list">
 
         <action
-            android:id="@+id/action_userlist_to_user" />
+            android:id="@+id/action_userlist_to_user_detail"
+            app:destination="@id/user_detail"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/user_detail"
+        android:name="com.thiagofr.jsonplaceholder.presenter.userdetail.UserDetailFragment"
+        android:label="UserDetail"
+        tools:layout="@layout/fragment_user_detail">
 
     </fragment>
 

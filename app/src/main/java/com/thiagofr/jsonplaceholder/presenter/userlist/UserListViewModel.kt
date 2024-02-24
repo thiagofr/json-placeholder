@@ -8,6 +8,7 @@ import com.thiagofr.jsonplaceholder.domain.Result
 import com.thiagofr.jsonplaceholder.domain.usecase.GetUserListUseCase
 import com.thiagofr.jsonplaceholder.model.UserUI
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class UserListViewModel(
@@ -19,11 +20,14 @@ class UserListViewModel(
 
     fun dispatchAction(action: UserListViewAction) {
         when (action) {
-            UserListViewAction.Init -> handleInit(action)
+            UserListViewAction.Init -> handleInit()
         }
     }
 
-    private fun handleInit(action: UserListViewAction) = viewModelScope.launch(Dispatchers.IO) {
+    private fun handleInit() = viewModelScope.launch(Dispatchers.IO) {
+        _viewState.postValue(UserListViewState.Loading)
+        // Delay meramente para possibilitar a visualização do loading
+        delay(2000L)
         when (val result = getUserListUseCase()) {
             is Result.Success -> handleSuccess(result.data)
             is Result.Error -> handleError()

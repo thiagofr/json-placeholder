@@ -6,14 +6,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.thiagofr.jsonplaceholder.databinding.UserItemBinding
 import com.thiagofr.jsonplaceholder.model.UserUI
 
-class UserListAdapter : RecyclerView.Adapter<UserViewHolder>() {
+class UserListAdapter(private val onItemClick: (UserUI) -> Unit) : RecyclerView.Adapter<UserViewHolder>() {
 
     private val userList = mutableListOf<UserUI>()
     private val currentList = mutableListOf<UserUI>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val binding = UserItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return UserViewHolder(binding)
+        return UserViewHolder(binding, onItemClick)
     }
 
     override fun getItemCount() = currentList.size

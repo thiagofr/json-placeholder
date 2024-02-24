@@ -66,6 +66,12 @@ class SearchToolbar @JvmOverloads constructor(
         this.searchViewEnterCallback = callback
     }
 
+    fun showSearchButton() {
+        binding.searchButton.isVisible = true
+    }  fun hideSearchButton() {
+        binding.searchButton.isGone = true
+    }
+
     private fun setSearchViewEnterAction() {
         binding.searchView.setOnEditorActionListener { _, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE ||
