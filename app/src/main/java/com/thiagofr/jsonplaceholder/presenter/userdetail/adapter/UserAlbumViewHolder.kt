@@ -11,7 +11,7 @@ class UserAlbumViewHolder(
 
     fun bind(userUI: AlbumUI) {
         binding.tvName.text = userUI.title
-        binding.root.setOnClickListener {
+        binding.cvAlbum.setOnClickListener {
             onItemClick(userUI)
         }
     }

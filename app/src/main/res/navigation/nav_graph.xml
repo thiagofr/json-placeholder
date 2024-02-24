@@ -3,29 +3,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/user_list">
+    app:startDestination="@id/user_list_screen">
 
     <fragment
-        android:id="@+id/user_list"
+        android:id="@+id/user_list_screen"
         android:name="com.thiagofr.jsonplaceholder.presenter.userlist.UserListFragment"
         android:label="UserList"
         tools:layout="@layout/fragment_user_list">
 
         <action
             android:id="@+id/action_userlist_to_user_detail"
-            app:destination="@id/user_detail"/>
+            app:destination="@id/user_detail_screen"/>
 
     </fragment>
 
     <fragment
-        android:id="@+id/user_detail"
+        android:id="@+id/user_detail_screen"
         android:name="com.thiagofr.jsonplaceholder.presenter.userdetail.UserDetailFragment"
         android:label="UserDetail"
         tools:layout="@layout/fragment_user_detail">
 
+        <action
+            android:id="@+id/action_user_detail_to_album"
+            app:destination="@id/album_screen"/>
+
         <argument
             android:name="user"
             app:argType="com.thiagofr.jsonplaceholder.model.UserUI"
+            />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/album_screen"
+        android:name="com.thiagofr.jsonplaceholder.presenter.album.AlbumFragment"
+        android:label="UserDetail"
+        tools:layout="@layout/fragment_album">
+
+        <argument
+            android:name="album"
+            app:argType="com.thiagofr.jsonplaceholder.model.AlbumUI"
             />
     </fragment>
 

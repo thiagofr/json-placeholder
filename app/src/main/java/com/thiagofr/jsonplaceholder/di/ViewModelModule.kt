@@ -1,5 +1,6 @@
 package com.thiagofr.jsonplaceholder.di
 
+import com.thiagofr.jsonplaceholder.presenter.album.AlbumViewModel
 import com.thiagofr.jsonplaceholder.presenter.userdetail.UserDetailViewModel
 import com.thiagofr.jsonplaceholder.presenter.userlist.UserListViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -13,5 +14,8 @@ val viewModelModule = module {
         UserDetailViewModel(
             getUserAlbumsUseCase = get()
         )
+    }
+    viewModel {
+        AlbumViewModel()
     }
 }

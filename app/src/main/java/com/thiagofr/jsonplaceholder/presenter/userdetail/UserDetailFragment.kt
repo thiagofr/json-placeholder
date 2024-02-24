@@ -70,7 +70,7 @@ class UserDetailFragment : Fragment() {
             layoutManager =
                 LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
             adapter = UserAlbumsAdapter(albumList) {
-                it
+                findNavController().navigate(UserDetailFragmentDirections.actionUserDetailToAlbum(it))
             }
             isVisible = true
         }
