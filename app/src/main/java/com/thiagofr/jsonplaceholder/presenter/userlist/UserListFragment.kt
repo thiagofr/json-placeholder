@@ -41,13 +41,20 @@ class UserListFragment : Fragment(), TextWatcher {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupStateObserver()
+        setupView()
+        viewModel.dispatchAction(UserListViewAction.Init)
+    }
 
+    private fun setupStateObserver() {
         viewModel.viewState.observe(viewLifecycleOwner) { state ->
             state?.let {
                 handleViewState(state)
             }
         }
+    }
 
+    private fun setupView() {
         with(binding) {
             rvUserList.layoutManager =
                 LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
@@ -59,7 +66,6 @@ class UserListFragment : Fragment(), TextWatcher {
                 }
             }
         }
-        viewModel.dispatchAction(UserListViewAction.Init)
     }
 
     private fun handleViewState(state: UserListViewState) {
