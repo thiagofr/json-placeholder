@@ -18,9 +18,9 @@ class GetUserAlbumsUseCaseImpl(
     }
 
     private fun handleSuccess(result: ResponseResult.SuccessResponse<List<Album>>): Result<List<AlbumUI>> {
-        val userList = result.data.map(AlbumToAlbumUIMapper::map)
+        val albumList = result.data.map(AlbumToAlbumUIMapper::map)
         return Result.Success(
-            userList
+            albumList
         )
     }
 
