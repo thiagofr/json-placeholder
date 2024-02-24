@@ -16,6 +16,6 @@ val viewModelModule = module {
         )
     }
     viewModel {
-        AlbumViewModel()
+        AlbumViewModel(getAlbumUseCase = get())
     }
 }

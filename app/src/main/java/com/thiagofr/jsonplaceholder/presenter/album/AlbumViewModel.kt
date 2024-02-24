@@ -5,12 +5,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thiagofr.jsonplaceholder.domain.Result
+import com.thiagofr.jsonplaceholder.domain.usecase.GetAlbumUseCase
 import com.thiagofr.jsonplaceholder.model.AlbumUI
+import com.thiagofr.jsonplaceholder.model.PhotoUI
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class AlbumViewModel: ViewModel() {
+class AlbumViewModel(
+    private val getAlbumUseCase: GetAlbumUseCase
+): ViewModel() {
 
     private val _viewState = MutableLiveData<AlbumViewState>()
     val viewState: LiveData<AlbumViewState> = _viewState
@@ -33,11 +37,14 @@ class AlbumViewModel: ViewModel() {
     private fun getAlbum(albumId: Long) = viewModelScope.launch(Dispatchers.IO){
         // Delay meramente para possibilitar a visualização do loading
         delay(2000L)
-//        when (val result = getUserAlbumsUseCase(userId)) {
-//            is Result.Success -> handleSuccess(result.data)
-//            is Result.Error -> handleError()
-//        }
-        handleError()
+        when (val result = getAlbumUseCase(albumId)) {
+            is Result.Success -> handleSuccess(result.data)
+            is Result.Error -> handleError()
+        }
+    }
+
+    private fun handleSuccess(data: List<PhotoUI>) {
+        _viewState.postValue(AlbumViewState.SetAlbum(data))
     }
 
     private fun handleError() {

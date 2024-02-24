@@ -10,9 +10,9 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.thiagofr.jsonplaceholder.R
 import com.thiagofr.jsonplaceholder.databinding.FragmentAlbumBinding
 import com.thiagofr.jsonplaceholder.model.AlbumUI
+import com.thiagofr.jsonplaceholder.model.PhotoUI
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AlbumFragment : Fragment() {
@@ -26,7 +26,7 @@ class AlbumFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         return binding.root
     }
 
@@ -45,7 +45,12 @@ class AlbumFragment : Fragment() {
         when (viewState) {
             is AlbumViewState.SetupViewState -> setupView(viewState.albumUI)
             AlbumViewState.ErrorViewState -> setErrorViewState()
+            is AlbumViewState.SetAlbum -> handleSetAlbumViewState(viewState.album)
         }
+    }
+
+    private fun handleSetAlbumViewState(album: List<PhotoUI>) {
+
     }
 
     private fun setupView(albumUI: AlbumUI) {
