@@ -1,5 +1,7 @@
 package com.thiagofr.jsonplaceholder.di
 
+import com.thiagofr.jsonplaceholder.data.repository.AlbumRepository
+import com.thiagofr.jsonplaceholder.data.repository.AlbumRepositoryImpl
 import com.thiagofr.jsonplaceholder.data.repository.UserRepository
 import com.thiagofr.jsonplaceholder.data.repository.UserRepositoryImpl
 import com.thiagofr.jsonplaceholder.data.service.JsonPlaceholderService
@@ -16,4 +18,5 @@ private val service = Retrofit.Builder()
 val networkModule = module {
     single<JsonPlaceholderService> { service }
     factory<UserRepository> { UserRepositoryImpl(service = get()) }
+    factory<AlbumRepository> { AlbumRepositoryImpl(service = get()) }
 }
