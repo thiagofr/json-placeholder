@@ -39,7 +39,7 @@ class UserListViewModel(
     }
 
     private fun handleError() {
-
+        _viewState.postValue(UserListViewState.ErrorViewState)
     }
 
 

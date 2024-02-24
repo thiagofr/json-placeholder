@@ -75,16 +75,9 @@ class UserListFragment : Fragment(), TextWatcher {
 
     private fun handleViewState(state: UserListViewState) {
         when (state) {
-            UserListViewState.Loading -> handleLoading()
             is UserListViewState.SetUserList -> handleSetUserList(state.userList)
-        }
-    }
-
-    private fun handleLoading() {
-        with(binding) {
-            userListShimmer.isVisible = true
-            userListShimmer.startShimmer()
-            toolbar.hideSearchButton()
+            UserListViewState.ErrorViewState -> handleErrorViewState()
+            UserListViewState.Loading -> handleLoading()
         }
     }
 
@@ -95,6 +88,21 @@ class UserListFragment : Fragment(), TextWatcher {
             userListShimmer.stopShimmer()
             userListShimmer.isGone = true
             toolbar.showSearchButton()
+        }
+    }
+
+    private fun handleErrorViewState() {
+        with(binding) {
+            errorGroup.isVisible = true
+            contentGroup.isGone = true
+        }
+    }
+
+    private fun handleLoading() {
+        with(binding) {
+            userListShimmer.isVisible = true
+            userListShimmer.startShimmer()
+            toolbar.hideSearchButton()
         }
     }
 
