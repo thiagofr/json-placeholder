@@ -17,6 +17,12 @@
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_left" />
 
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/content_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="tv_name, tv_username, tv_email, tv_album_label, rv_albums, user_albums_shimmer" />
+
         <TextView
             android:id="@+id/tv_name"
             style="@style/TextAppearance.Material3.HeadlineLarge"
@@ -59,56 +65,96 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="50dp"
+            android:text="@string/albuns"
+            android:textAllCaps="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_email"
-            android:textAllCaps="true"
-            android:text="@string/albuns" />
+            app:layout_constraintTop_toBottomOf="@id/tv_email" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_albums"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            tools:listitem="@layout/albums_item"
             android:layout_marginTop="10dp"
             android:visibility="gone"
-            tools:visibility="visible"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_album_label"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            tools:listitem="@layout/albums_item"
+            tools:visibility="visible" />
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/user_albums_shimmer"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:visibility="gone"
-            tools:visibility="visible"
             android:layout_marginTop="10dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_album_label"
-            app:layout_constraintBottom_toBottomOf="parent">
+            tools:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <include layout="@layout/user_album_shimmer"/>
-                <include layout="@layout/user_album_shimmer"/>
-                <include layout="@layout/user_album_shimmer"/>
-                <include layout="@layout/user_album_shimmer"/>
-                <include layout="@layout/user_album_shimmer"/>
-                <include layout="@layout/user_album_shimmer"/>
-                <include layout="@layout/user_album_shimmer"/>
-                <include layout="@layout/user_album_shimmer"/>
-                <include layout="@layout/user_album_shimmer"/>
-                <include layout="@layout/user_album_shimmer"/>
+                <include layout="@layout/user_album_shimmer" />
+
+                <include layout="@layout/user_album_shimmer" />
+
+                <include layout="@layout/user_album_shimmer" />
+
+                <include layout="@layout/user_album_shimmer" />
+
+                <include layout="@layout/user_album_shimmer" />
+
+                <include layout="@layout/user_album_shimmer" />
+
+                <include layout="@layout/user_album_shimmer" />
+
+                <include layout="@layout/user_album_shimmer" />
+
+                <include layout="@layout/user_album_shimmer" />
+
+                <include layout="@layout/user_album_shimmer" />
 
             </LinearLayout>
 
         </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/error_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:constraint_referenced_ids="img_error, tv_error" />
+
+        <ImageView
+            android:id="@+id/img_error"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_error"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias=".35"
+            android:importantForAccessibility="no" />
+
+        <TextView
+            android:id="@+id/tv_error"
+            style="@style/MaterialAlertDialog.Material3.Title.Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/error_message"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_error" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

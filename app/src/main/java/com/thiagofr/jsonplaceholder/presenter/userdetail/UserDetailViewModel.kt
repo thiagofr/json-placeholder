@@ -9,6 +9,7 @@ import com.thiagofr.jsonplaceholder.domain.usecase.GetUserAlbumsUseCase
 import com.thiagofr.jsonplaceholder.model.AlbumUI
 import com.thiagofr.jsonplaceholder.model.UserUI
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class UserDetailViewModel(
@@ -34,7 +35,8 @@ class UserDetailViewModel(
     }
 
     private fun getAlbums(userId: Long) = viewModelScope.launch(Dispatchers.IO){
-
+        // Delay meramente para possibilitar a visualização do loading
+        delay(2000L)
         when (val result = getUserAlbumsUseCase(userId)) {
             is Result.Success -> handleSuccess(result.data)
             is Result.Error -> handleError()

@@ -3,4 +3,5 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="user_detail_title">Perfil</string>
     <string name="albuns">Álbuns</string>
+    <string name="error_message">Ops… Tivemos um erro inesperado</string>
 </resources>

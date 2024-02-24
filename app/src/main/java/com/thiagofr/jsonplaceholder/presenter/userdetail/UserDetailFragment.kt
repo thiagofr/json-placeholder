@@ -82,7 +82,8 @@ class UserDetailFragment : Fragment() {
     }
 
     private fun setErrorViewState() {
-
+        binding.contentGroup.isGone = true
+        binding.errorGroup.isVisible = true
     }
 
     private fun getUser(): UserUI? {
