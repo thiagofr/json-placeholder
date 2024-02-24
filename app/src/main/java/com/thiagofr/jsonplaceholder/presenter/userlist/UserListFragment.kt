@@ -27,7 +27,13 @@ class UserListFragment : Fragment(), TextWatcher {
     private val viewModel: UserListViewModel by viewModel()
 
     private val adapter: UserListAdapter = UserListAdapter {
-        findNavController().navigate(UserListFragmentDirections.actionUserlistToUserDetail())
+        binding.toolbar.resetState()
+        findNavController().navigate(UserListFragmentDirections.actionUserlistToUserDetail(it))
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.dispatchAction(UserListViewAction.Init)
     }
 
     override fun onCreateView(
@@ -43,7 +49,6 @@ class UserListFragment : Fragment(), TextWatcher {
         super.onViewCreated(view, savedInstanceState)
         setupStateObserver()
         setupView()
-        viewModel.dispatchAction(UserListViewAction.Init)
     }
 
     private fun setupStateObserver() {

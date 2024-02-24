@@ -72,6 +72,14 @@ class SearchToolbar @JvmOverloads constructor(
         binding.searchButton.isGone = true
     }
 
+    fun resetState() {
+        with(binding) {
+            searchView.isGone = true
+            searchButton.isVisible = true
+            title.isVisible = true
+        }
+    }
+
     private fun setSearchViewEnterAction() {
         binding.searchView.setOnEditorActionListener { _, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE ||

@@ -23,6 +23,10 @@
         android:label="UserDetail"
         tools:layout="@layout/fragment_user_detail">
 
+        <argument
+            android:name="user"
+            app:argType="com.thiagofr.jsonplaceholder.model.UserUI"
+            />
     </fragment>
 
 </navigation>
