@@ -11,8 +11,6 @@ class UserAlbumsAdapter(
     private val onItemClick: (AlbumUI) -> Unit
 ) : RecyclerView.Adapter<UserAlbumViewHolder>() {
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserAlbumViewHolder {
         val binding = AlbumsItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return UserAlbumViewHolder(binding, onItemClick)

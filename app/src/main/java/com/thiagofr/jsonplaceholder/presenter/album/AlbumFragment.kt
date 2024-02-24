@@ -10,9 +10,11 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.thiagofr.jsonplaceholder.databinding.FragmentAlbumBinding
 import com.thiagofr.jsonplaceholder.model.AlbumUI
 import com.thiagofr.jsonplaceholder.model.PhotoUI
+import com.thiagofr.jsonplaceholder.presenter.album.adapter.PhotoAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AlbumFragment : Fragment() {
@@ -50,11 +52,23 @@ class AlbumFragment : Fragment() {
     }
 
     private fun handleSetAlbumViewState(album: List<PhotoUI>) {
-
+        with(binding) {
+            rvAlbum.layoutManager = GridLayoutManager(requireContext(), COLUMN_COUNT)
+            rvAlbum.adapter = PhotoAdapter(album) {
+                it
+            }
+            contentShimmer.stopShimmer()
+            contentShimmer.isGone = true
+            rvAlbum.isVisible = true
+        }
     }
 
     private fun setupView(albumUI: AlbumUI) {
         setupToolbar(albumUI.title)
+        with(binding) {
+            contentShimmer.startShimmer()
+            contentShimmer.isVisible = true
+        }
     }
 
     private fun setErrorViewState() {
@@ -83,5 +97,6 @@ class AlbumFragment : Fragment() {
 
     companion object {
         private const val ALBUM_ARG = "album"
+        private const val COLUMN_COUNT = 3
     }
 }

@@ -22,7 +22,42 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            tools:visibility="visible"/>
+            tools:visibility="visible"
+            app:constraint_referenced_ids="rv_album, content_shimmer"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_album"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="3"
+            tools:listitem="@layout/photo_item"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/content_shimmer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include layout="@layout/photo_row_shimmer"/>
+                <include layout="@layout/photo_row_shimmer"/>
+                <include layout="@layout/photo_row_shimmer"/>
+                <include layout="@layout/photo_row_shimmer"/>
+                <include layout="@layout/photo_row_shimmer"/>
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/error_group"
