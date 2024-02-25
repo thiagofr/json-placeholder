@@ -26,10 +26,7 @@ class UserListFragment : Fragment(), TextWatcher {
 
     private val viewModel: UserListViewModel by viewModel()
 
-    private val adapter: UserListAdapter = UserListAdapter {
-        binding.toolbar.resetState()
-        findNavController().navigate(UserListFragmentDirections.actionUserlistToUserDetail(it))
-    }
+    private var adapter: UserListAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +64,7 @@ class UserListFragment : Fragment(), TextWatcher {
             toolbar.setSearchTextWatcher(this@UserListFragment)
             toolbar.setSearchViewEnterCallback {
                 if (toolbar.searchTermText.isNullOrEmpty()) {
-                    adapter.resetFilter()
+                    adapter?.resetFilter()
                 }
             }
         }
@@ -82,9 +79,14 @@ class UserListFragment : Fragment(), TextWatcher {
     }
 
     private fun handleSetUserList(userList: List<UserUI>) {
-        adapter.addList(userList)
+        adapter = UserListAdapter {
+            binding.toolbar.resetState()
+            findNavController().navigate(UserListFragmentDirections.actionUserlistToUserDetail(it))
+        }
+        adapter?.addList(userList)
         with(binding) {
             rvUserList.isVisible = true
+            rvUserList.adapter = adapter
             userListShimmer.stopShimmer()
             userListShimmer.isGone = true
             toolbar.showSearchButton()
@@ -114,6 +116,12 @@ class UserListFragment : Fragment(), TextWatcher {
     }
 
     override fun afterTextChanged(s: Editable?) {
-        adapter.filter(s.toString())
+        adapter?.filter(s.toString())
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewModel.viewState.removeObservers(viewLifecycleOwner)
+        viewModelStore.clear()
     }
 }

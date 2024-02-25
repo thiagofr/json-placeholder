@@ -41,6 +41,7 @@ class UserListAdapter(private val onItemClick: (UserUI) -> Unit) : RecyclerView.
     }
 
     fun addList(userList: List<UserUI>) {
+        this.userList.clear()
         this.userList.addAll(userList)
         currentList.addAll(this.userList)
         notifyDataSetChanged()

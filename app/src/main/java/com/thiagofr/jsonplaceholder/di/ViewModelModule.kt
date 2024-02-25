@@ -7,9 +7,11 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val viewModelModule = module {
-    viewModel { UserListViewModel(
-        getUserListUseCase = get()
-    ) }
+    viewModel {
+        UserListViewModel(
+            getUserListUseCase = get()
+        )
+    }
     viewModel {
         UserDetailViewModel(
             getUserAlbumsUseCase = get()
