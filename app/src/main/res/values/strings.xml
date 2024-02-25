@@ -8,4 +8,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="photo_content_description">Foto do album</string>
+    <string name="warning_title">Atenção</string>
+    <string name="warning_disclaimer">Para que seja possível visualizar as imagem em sua galeria, será necessário permissão de leitura e escrita ao armazenamento</string>
+    <string name="granted">Permitir</string>
+    <string name="deny_permission">Negar permissão</string>
 </resources>
