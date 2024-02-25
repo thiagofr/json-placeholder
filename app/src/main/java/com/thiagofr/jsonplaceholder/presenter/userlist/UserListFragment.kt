@@ -122,6 +122,5 @@ class UserListFragment : Fragment(), TextWatcher {
     override fun onDestroyView() {
         super.onDestroyView()
         viewModel.viewState.removeObservers(viewLifecycleOwner)
-        viewModelStore.clear()
     }
 }
