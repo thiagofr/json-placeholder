@@ -48,6 +48,12 @@ class AlbumFragment : Fragment() {
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val album = getAlbum()
+        viewModel.dispatchAction(AlbumViewAction.InitViewAction(album))
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -57,13 +63,11 @@ class AlbumFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val album = getAlbum()
         viewModel.viewState.observe(viewLifecycleOwner) {
             it?.let {
                 handleViewState(it)
             }
         }
-        viewModel.dispatchAction(AlbumViewAction.InitViewAction(album))
     }
 
     private fun handleViewState(viewState: AlbumViewState) {

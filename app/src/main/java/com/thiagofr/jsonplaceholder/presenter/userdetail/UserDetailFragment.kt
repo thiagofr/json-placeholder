@@ -27,6 +27,12 @@ class UserDetailFragment : Fragment() {
 
     private val viewModel: UserDetailViewModel by viewModel()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val user = getUser()
+        viewModel.dispatchAction(UserDetailViewAction.InitView(user))
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,13 +43,11 @@ class UserDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val user = getUser()
         viewModel.viewState.observe(viewLifecycleOwner) {
             it?.let {
                 handleViewState(it)
             }
         }
-        viewModel.dispatchAction(UserDetailViewAction.InitView(user))
     }
 
     private fun handleViewState(viewState: UserDetailViewState) {
