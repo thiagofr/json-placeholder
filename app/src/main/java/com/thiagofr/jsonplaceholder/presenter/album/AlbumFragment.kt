@@ -19,6 +19,7 @@ import com.thiagofr.jsonplaceholder.databinding.FragmentAlbumBinding
 import com.thiagofr.jsonplaceholder.model.AlbumUI
 import com.thiagofr.jsonplaceholder.model.PhotoUI
 import com.thiagofr.jsonplaceholder.presenter.album.adapter.PhotoAdapter
+import com.thiagofr.jsonplaceholder.presenter.info.InfoBottomSheetFragment
 import com.thiagofr.jsonplaceholder.presenter.permission.PermissionBottomSheetFragment
 import com.thiagofr.jsonplaceholder.util.checkExternalStoragePermission
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -29,6 +30,8 @@ class AlbumFragment : Fragment() {
     private val binding by lazy {
         FragmentAlbumBinding.inflate(layoutInflater)
     }
+
+    private val viewModel: AlbumViewModel by viewModel()
 
     private val register = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
@@ -41,19 +44,9 @@ class AlbumFragment : Fragment() {
                 handleGrantedPermission()
             }
 
-            false -> handleDenyPermission()
+            false -> showInfoDisclaimer()
         }
     }
-
-    private fun handleGrantedPermission() {
-        viewModel.dispatchAction(AlbumViewAction.GetImageAfterPermission)
-    }
-
-    private fun handleDenyPermission() {
-
-    }
-
-    private val viewModel: AlbumViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -81,6 +74,10 @@ class AlbumFragment : Fragment() {
             is AlbumViewState.OpenImage -> handleOpenImage(viewState.data)
             is AlbumViewState.RequestPermissions -> handleRequestPermissions(viewState.permissions)
         }
+    }
+
+    private fun handleGrantedPermission() {
+        viewModel.dispatchAction(AlbumViewAction.GetImageAfterPermission)
     }
 
     private fun handleRequestPermissions(permissions: Array<String>) {
@@ -170,6 +167,20 @@ class AlbumFragment : Fragment() {
                         permissions
                     )
                 )
+            }
+            this.isCancelable = false
+        }
+
+        bottomSheet.show(childFragmentManager, bottomSheet.tag)
+    }
+
+    private fun showInfoDisclaimer() {
+        val bottomSheet = InfoBottomSheetFragment().apply {
+            showCallBack = {
+                binding.scrimView.isVisible = true
+            }
+            okCallBack = {
+                binding.scrimView.isGone = true
             }
             this.isCancelable = false
         }

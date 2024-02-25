@@ -12,4 +12,5 @@
     <string name="warning_disclaimer">Para que seja possível visualizar as imagem em sua galeria, será necessário permissão de leitura e escrita ao armazenamento</string>
     <string name="granted">Permitir</string>
     <string name="deny_permission">Negar permissão</string>
+    <string name="permission_disclaimer">Infelizmente, não tenho permissão de leitura e escrita na memória. Por favor, conceda permissão manualmente.</string>
 </resources>
