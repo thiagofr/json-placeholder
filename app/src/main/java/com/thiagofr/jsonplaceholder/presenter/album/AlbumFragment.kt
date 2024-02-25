@@ -201,6 +201,11 @@ class AlbumFragment : Fragment() {
         context?.startActivity(intent)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewModel.viewState.removeObservers(viewLifecycleOwner)
+    }
+
     companion object {
         private const val ALBUM_ARG = "album"
         private const val COLUMN_COUNT = 3

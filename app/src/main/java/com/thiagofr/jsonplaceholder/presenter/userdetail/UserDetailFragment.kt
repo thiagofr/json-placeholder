@@ -107,6 +107,11 @@ class UserDetailFragment : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewModel.viewState.removeObservers(viewLifecycleOwner)
+    }
+
     companion object {
         private const val USER_ARG = "user"
     }
